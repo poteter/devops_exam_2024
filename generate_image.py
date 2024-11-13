@@ -13,10 +13,10 @@ model_id = "amazon.titan-image-generator-v1"
 bucket_name = "pgr301-couch-explorers"
 
 # Frank; Important; Change this prompt to something else before the presentation with the investors!
-prompt = "Investors, with circus hats, giving money to developers with large smiles"
+prompt = "An english setter with fake antlers on its head, eating german gingerbread cookies in piccadilly circus"
 
 seed = random.randint(0, 2147483647)
-s3_image_path = f"generated_images/titan_{seed}.png"
+s3_image_path = f"2_generated_images/titan_{seed}.png"
 
 native_request = {
     "taskType": "TEXT_IMAGE",
