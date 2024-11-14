@@ -50,9 +50,6 @@ jobs:
                 sam build
               working-directory: bedrock_sam/bedrock_application/
                 
-            echo "AWS_REGION=${AWS_REGION}"
-            echo "AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}"    
-                
             # Deploy SAM Application with Debugging
             - name: Deploy SAM Application with Debugging
               run: |
