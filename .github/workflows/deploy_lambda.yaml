@@ -8,66 +8,25 @@ on:
             
             
 jobs:
-    build-and-deploy:
-        runs-on: ubuntu-latest
-        steps:
-            # checkout repository
-            - name: checkout repository
-              uses: actions/checkout@v3
-              
-            # setup python
-            - name: setup python 3.8
-              uses: actions/setup-python@v4
-              with:
-                python-version: '3.8'
-                
-            # configure aws credentials
-            - name: configure aws credentials
-              uses: aws-actions/configure-aws-credentials@v3
-              with:
-                aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-                aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                aws-region: ${{ secrets.REGION_NAME }}
-            
-            # cache pip dependecies
-            - name: cache pip dependecies
-              uses: actions/cache@v3
-              with:
-                path: ~/.cache/pip
-                key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-                restore-keys: |
-                    ${{ runner.os }}-pip-
-            
-            # install dependencies
-            - name: install dependencies
-              run: |
-                python -m pip install --upgrade pip
-                pip install -r bedrock_sam/bedrock_application/hello_world/requirements.txt
-                
-            # build sam application
-            - name: build sam application
-              run: |
-                sam build
-              working-directory: bedrock_sam/bedrock_application/
-                
-            # Deploy SAM Application with Debugging
-            - name: Deploy SAM Application with Debugging
-              run: |
-                echo "Before unsetting:"
-                echo "AWS_REGION=${AWS_REGION}"
-                echo "AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}"
-                
-                unset AWS_REGION
-                unset AWS_DEFAULT_REGION
-                
-                echo "After unsetting:"
-                echo "AWS_REGION=${AWS_REGION}"
-                echo "AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}"
-                
-                sam deploy \
-                  --no-confirm-changeset \
-                  --no-fail-on-empty-changeset \
-                  --stack-name ${{ secrets.STACK_NAME }} \
-                  --capabilities CAPABILITY_IAM \
-                  --region ${{ secrets.REGION_NAME }}
-              working-directory: bedrock_sam/bedrock_application/
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - uses: aws-actions/setup-sam@v1
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-1
+      - run: sam build \
+        --use-container
+        working-directory: bedrock_sam/bedrock_application/
+      - run: sam deploy \
+        --no-confirm-changeset \
+        --no-fail-on-empty-changeset \
+        --stack-name ${{ secrets.STACK_NAME }} \
+        --s3-bucket ${{ secrets.S3_BUCKET }} \
+        --capabilities CAPABILITY_IAM \
+        --region eu-west-1
+        working-directory: bedrock_sam/bedrock_application/
