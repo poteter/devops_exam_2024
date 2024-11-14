@@ -72,7 +72,6 @@ jobs:
                   --no-confirm-changeset \
                   --no-fail-on-empty-changeset \
                   --stack-name ${{ secrets.STACK_NAME }} \
-                  --s3-bucket ${{ secrets.S3_BUCKET }} \
                   --capabilities CAPABILITY_IAM \
                   --region ${{ secrets.REGION_NAME }}
               working-directory: bedrock_sam/bedrock_application/
