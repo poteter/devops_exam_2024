@@ -57,7 +57,7 @@ jobs:
             # build sam application
             - name: build sam application
               run: |
-                sam build
+                sam build bedrock_sam/bedrock_application
                 
             # deploy sam application
             - name: deploy sam application
