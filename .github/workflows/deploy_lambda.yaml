@@ -57,7 +57,8 @@ jobs:
             # build sam application
             - name: build sam application
               run: |
-                sam build bedrock_sam/bedrock_application
+                sam build
+              working-directory: bedrock_sam/bedrock_application/
                 
             # deploy sam application
             - name: deploy sam application
@@ -69,3 +70,4 @@ jobs:
                 --s3-bucket ${{ secrets.S3_BUCKET }} \
                 --capabilities CAPABILITY_IAM \
                 --region ${{ secrets.AWS_REGION }}
+              working-directory: bedrock_sam/bedrock_application/
