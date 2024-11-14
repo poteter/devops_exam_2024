@@ -37,6 +37,7 @@ jobs:
               with:
                 aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
                 aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                aws-region: ${{ secrets.REGION_NAME }}
             
             # cache pip dependecies
             - name: cache pip dependecies
@@ -67,4 +68,5 @@ jobs:
                   --no-fail-on-empty-changeset \
                   --stack-name ${{ secrets.STACK_NAME }} \
                   --capabilities CAPABILITY_IAM \
+                  --region ${{ secrets.REGION_NAME }}
               working-directory: bedrock_sam/bedrock_application/
