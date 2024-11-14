@@ -64,6 +64,7 @@ jobs:
             - name: deploy sam application
               run: |
                 sam deploy \
+                --guided \
                 --no-confirm-changeset \
                 --no-fail-on-empty-changeset \
                 --stack-name ${{ secrets.STACK_NAME }} \
