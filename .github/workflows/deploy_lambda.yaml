@@ -49,10 +49,6 @@ jobs:
               run: |
                 sam build
               working-directory: bedrock_sam/bedrock_application/
-              
-            - name: List Environment Variables
-              run: |
-                printenv | sort
                 
             # Deploy SAM Application with Debugging
             - name: Deploy SAM Application with Debugging
@@ -61,8 +57,8 @@ jobs:
                 echo "AWS_REGION=${AWS_REGION}"
                 echo "AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}"
                 
-                unset AWS_REGION
-                unset AWS_DEFAULT_REGION
+                remove AWS_REGION
+                remove AWS_DEFAULT_REGION
                 
                 echo "After unsetting:"
                 echo "AWS_REGION=${AWS_REGION}"
