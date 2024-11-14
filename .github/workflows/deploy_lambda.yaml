@@ -23,12 +23,10 @@ jobs:
               with:
                 python-version: '3.8'
             
-            # install aws cli
-            - name: install aws cli
+            # confirm aws cli
+            - name: Verify AWS CLI Version
               run: |
-                curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-                unzip awscliv2.zip
-                sudo ./aws/install
+                aws --version
                 
             # install sam cli
             - name: install sam cli
