@@ -14,7 +14,7 @@ ___
             }
 - B
     
-       next
+       https://github.com/poteter/devops_exam_2024/actions/runs/11837824347
 
 ### oppgave 2
 ___
