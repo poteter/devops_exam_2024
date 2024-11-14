@@ -75,4 +75,4 @@ jobs:
                   --s3-bucket ${{ secrets.S3_BUCKET }} \
                   --capabilities CAPABILITY_IAM \
                   --region ${{ secrets.REGION_NAME }}
-              working-directory: bedrock_sam/bedrock_application/hello_world
+              working-directory: bedrock_sam/bedrock_application/
