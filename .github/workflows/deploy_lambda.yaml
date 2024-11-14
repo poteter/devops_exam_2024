@@ -64,11 +64,12 @@ jobs:
             - name: deploy sam application
               run: |
                 sam deploy \
-                --no-confirm-changeset \
-                --no-fail-on-empty-changeset \
-                --stack-name ${{ secrets.STACK_NAME }} \
-                --s3-bucket ${{ secrets.S3_BUCKET }} \
-                --capabilities CAPABILITY_IAM \
-                --region ${{ secrets.AWS_REGION }} \
-                --no-interactive
+                  --no-confirm-changeset \
+                  --no-fail-on-empty-changeset \
+                  --stack-name ${{ secrets.STACK_NAME }} \
+                  --s3-bucket ${{ secrets.S3_BUCKET }} \
+                  --capabilities CAPABILITY_IAM \
+                  --region ${{ secrets.AWS_REGION }} \
+                  --no-interactive
+                  
               working-directory: bedrock_sam/bedrock_application/
