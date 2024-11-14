@@ -21,16 +21,6 @@ jobs:
               with:
                 python-version: '3.8'
                 
-            # confirm aws cli
-            - name: Verify AWS CLI Version
-              run: |
-                aws --version
-                
-            # Verify SAM CLI Version
-            - name: Verify SAM CLI Version
-              run: |
-                sam --version
-                
             # configure aws credentials
             - name: configure aws credentials
               uses: aws-actions/configure-aws-credentials@v3
@@ -64,13 +54,25 @@ jobs:
               run: |
                 printenv | sort
                 
-            # deploy sam application
-            - name: deploy sam application
+            # Deploy SAM Application with Debugging
+            - name: Deploy SAM Application with Debugging
               run: |
+                echo "Before unsetting:"
+                echo "AWS_REGION=${AWS_REGION}"
+                echo "AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}"
+                
+                unset AWS_REGION
+                unset AWS_DEFAULT_REGION
+                
+                echo "After unsetting:"
+                echo "AWS_REGION=${AWS_REGION}"
+                echo "AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}"
+                
                 sam deploy \
                   --no-confirm-changeset \
                   --no-fail-on-empty-changeset \
                   --stack-name ${{ secrets.STACK_NAME }} \
+                  --s3-bucket ${{ secrets.S3_BUCKET }} \
                   --capabilities CAPABILITY_IAM \
                   --region ${{ secrets.REGION_NAME }}
-              working-directory: bedrock_sam/bedrock_application/
+              working-directory: bedrock_sam/bedrock_application/hello_world
