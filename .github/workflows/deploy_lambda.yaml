@@ -28,6 +28,5 @@ jobs:
             --no-confirm-changeset \
             --no-fail-on-empty-changeset \
             --stack-name ${{ secrets.STACK_NAME }} \
-            --capabilities CAPABILITY_IAM \
-            --region eu-west-1
+            --capabilities CAPABILITY_IAM
         working-directory: bedrock_sam/bedrock_application/
