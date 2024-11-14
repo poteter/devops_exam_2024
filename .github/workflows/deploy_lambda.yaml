@@ -59,6 +59,10 @@ jobs:
               run: |
                 sam build
               working-directory: bedrock_sam/bedrock_application/
+              
+            - name: List Environment Variables
+              run: |
+                printenv | sort
                 
             # deploy sam application
             - name: deploy sam application
