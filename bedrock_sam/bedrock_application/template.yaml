@@ -25,6 +25,7 @@ Resources:
         Variables:
           BEDROCK_MODEL_ID: "amazon.titan-image-generator-v1"
           S3_BUCKET_NAME: "pgr301-couch-explorers"
+          AWS_REGION: "eu-west-1"
       Policies:
         - Statement:
             - Effect: Allow
