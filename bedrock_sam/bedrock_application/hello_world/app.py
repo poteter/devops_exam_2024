@@ -11,6 +11,7 @@ def lambda_handler(event, context):
         try:
             # Your logic here
             print("Process completed successfully.")
+            print("Process completed successfully. once more...")
             return {"statusCode": 200, "body": "Success"}
         except Exception as e:
             print(f"Error: {str(e)}")
@@ -19,8 +20,8 @@ def lambda_handler(event, context):
         try:
             prompt = event.get('body', '')
             
-    
-            bedrock_client = boto3.client("bedrock-runtime", region_name="us-east-1")
+            bedrock_region = os.getenv("BEDROCK_REGION")
+            bedrock_client = boto3.client("bedrock-runtime", region_name=bedrock_region)
             s3_client = boto3.client("s3")
             
             model_id = os.getenv('BEDROCK_MODEL_ID')
