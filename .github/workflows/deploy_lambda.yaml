@@ -57,8 +57,8 @@ jobs:
                 echo "AWS_REGION=${AWS_REGION}"
                 echo "AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}"
                 
-                remove AWS_REGION
-                remove AWS_DEFAULT_REGION
+                unset AWS_REGION
+                unset AWS_DEFAULT_REGION
                 
                 echo "After unsetting:"
                 echo "AWS_REGION=${AWS_REGION}"
