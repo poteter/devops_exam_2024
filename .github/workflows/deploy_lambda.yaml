@@ -68,4 +68,5 @@ jobs:
                   --no-fail-on-empty-changeset \
                   --stack-name ${{ secrets.STACK_NAME }} \
                   --capabilities CAPABILITY_IAM \
+                  --region ${{ secrets.AWS_REGION }} \
               working-directory: bedrock_sam/bedrock_application/
