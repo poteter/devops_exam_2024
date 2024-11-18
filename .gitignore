@@ -3,7 +3,7 @@
 
 # Terraform plan files
 *.tfplan
-
+infra/tfplan
 
 # Local override files
 override.tf
@@ -28,3 +28,4 @@ terraform.lock.hcl
 # Optional: IDE and OS-specific files
 # For example, VSCode settings
 .vscode/
+.venv/
