@@ -10,7 +10,7 @@ resource "aws_sns_topic" "sqs_alarm_topic" {
 resource "aws_sns_topic_subscription" "email_subscription" {
   topic_arn = aws_sns_topic.sqs_alarm_topic.arn
   protocol  = "email"
-  endpoint  = "thoeiv15@student.kristiania.no"
+  endpoint  = var.alarm_email
 }
 
 resource "aws_cloudwatch_metric_alarm" "sqs_old_age_alarm" {

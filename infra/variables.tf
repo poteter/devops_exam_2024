@@ -18,6 +18,10 @@ variable "region" {
   default = "eu-west-1"
 }
 
+variable "alarm_email" {
+  default = "thoeiv15@student.kristiania.no"
+}
+
 variable "sqs_queue_name" {
   default = "candidate_2_bedrock_sqs_queue"
 }
