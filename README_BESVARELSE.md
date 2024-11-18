@@ -17,5 +17,14 @@ ___
        https://github.com/poteter/devops_exam_2024/actions/runs/11837824347
 
 ### oppgave 2
+
+- A
+
+- B
+        #### workflow for push to main
+        https://github.com/poteter/devops_exam_2024/actions/runs/11892270567
+
+        #### workflow for push to develop
+        
 ___
 
