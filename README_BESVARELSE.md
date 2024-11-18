@@ -20,7 +20,11 @@ ___
 
 - A
 
+        #### http url for sqs queue
+        https://sqs.eu-west-1.amazonaws.com/244530008913/candidate_2_bedrock_sqs_queue
+
 - B
+        
         #### workflow for push to main
         https://github.com/poteter/devops_exam_2024/actions/runs/11892270567
 
