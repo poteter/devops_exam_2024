@@ -15,7 +15,14 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-west-1
+          aws-region: ${{ secrets.AWS_REGION }}
+      - name: Generate Stack Name
+          id: generate_stack_name
+          run: |
+            BRANCH_NAME=$(echo "${GITHUB_REF#refs/heads/}" | tr '/' '-')
+            SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -c1-8)
+            STACK_NAME="bedrock-stack-${BRANCH_NAME}-${SHORT_SHA}"
+            echo "STACK_NAME=${STACK_NAME}" >> $GITHUB_ENV
       - run: |
           sam build \
             --use-container
@@ -24,7 +31,7 @@ jobs:
           sam deploy \
             --no-confirm-changeset \
             --no-fail-on-empty-changeset \
-            --stack-name ${{ secrets.STACK_NAME }} \
+            --stack-name $STACK_NAME \
             --capabilities CAPABILITY_IAM \
             --region eu-west-1
         working-directory: bedrock_sam/bedrock_application/
