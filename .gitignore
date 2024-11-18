@@ -29,3 +29,10 @@ terraform.lock.hcl
 # For example, VSCode settings
 .vscode/
 .venv/
+
+# java_sqs_client
+# Maven build directory
+/target/
+
+# Gradle build directory
+/build/
