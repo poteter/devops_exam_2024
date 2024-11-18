@@ -1,33 +1,55 @@
 name: on push to main build and deploy the bedrock application
+
 on:
-    push:
-        branches:
-            - main
-    workflow_dispatch:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-      - uses: aws-actions/setup-sam@v1
-      - uses: aws-actions/configure-aws-credentials@v1
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'  # Specify your required Python version
+
+      - name: Setup AWS SAM CLI
+        uses: aws-actions/setup-sam@v1
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
+
       - name: Generate Stack Name
-          id: generate_stack_name
-          run: |
-            BRANCH_NAME=$(echo "${GITHUB_REF#refs/heads/}" | tr '/' '-')
-            SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -c1-8)
-            STACK_NAME="bedrock-stack-${BRANCH_NAME}-${SHORT_SHA}"
-            echo "STACK_NAME=${STACK_NAME}" >> $GITHUB_ENV
-      - run: |
-          sam build \
-            --use-container
+        id: generate_stack_name
+        run: |
+          # Extract branch name and replace '/' with '-'
+          BRANCH_NAME=$(echo "${GITHUB_REF#refs/heads/}" | tr '/' '-')
+          
+          # Shorten commit SHA for uniqueness
+          SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -c1-8)
+          
+          # Define stack name using branch and commit SHA
+          STACK_NAME="bedrock-stack-${BRANCH_NAME}-${SHORT_SHA}"
+          
+          # Export STACK_NAME as an environment variable for subsequent steps
+          echo "STACK_NAME=${STACK_NAME}" >> $GITHUB_ENV
+
+      - name: SAM Build
+        run: |
+          sam build --use-container
         working-directory: bedrock_sam/bedrock_application/
-      - run: |
+
+      - name: SAM Deploy
+        run: |
           sam deploy \
             --no-confirm-changeset \
             --no-fail-on-empty-changeset \
