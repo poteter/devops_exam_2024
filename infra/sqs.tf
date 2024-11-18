@@ -14,7 +14,7 @@ resource "aws_sns_topic_subscription" "email_subscription" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "sqs_old_age_alarm" {
-  alarm_name          = "SQS_Oldest_Message_Age_Alarm"
+  alarm_name          = "candidate_2_SQS_Oldest_Message_Age_Alarm"
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = "2"
   metric_name         = "ApproximateAgeOfOldestMessage"
