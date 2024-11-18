@@ -35,9 +35,13 @@ resource "aws_iam_policy" "lambda_policy" {
         "Resource": "arn:aws:s3:::${data.aws_s3_bucket.image_bucket.id}/2/generated_images/*"
       },
       {
+        "Sid": "AllowSQSPermissions",
         "Effect": "Allow",
         "Action": [
-          "sqs:SendMessage"
+          "sqs:ReceiveMessage",
+          "sqs:DeleteMessage",
+          "sqs:GetQueueAttributes",
+          "sqs:ChangeMessageVisibility"
         ],
         "Resource": aws_sqs_queue.image_queue.arn
       },

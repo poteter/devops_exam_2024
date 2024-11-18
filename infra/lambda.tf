@@ -31,7 +31,7 @@ resource "aws_lambda_function" "lambda" {
 resource "aws_lambda_event_source_mapping" "lambda_sqs" {
   event_source_arn  = aws_sqs_queue.image_queue.arn
   function_name     = aws_lambda_function.lambda.arn
-  batch_size        = 1
+  batch_size        = 5
   enabled           = true
   
   depends_on = [
