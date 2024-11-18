@@ -32,7 +32,7 @@ terraform.lock.hcl
 
 # java_sqs_client
 # Maven build directory
-/target/
+java_sqs_client/target/
 
 # Gradle build directory
-/build/
+java_sqs_client/build/
