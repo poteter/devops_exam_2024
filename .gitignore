@@ -1,2 +1,26 @@
-# Virtual Environment
-.venv/
+# Terraform directories
+.terraform/
+
+# Local override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore Terraform state files
+terraform.tfstate
+terraform.tfstate.backup
+
+# Crash log files
+crash.log
+
+# Temporary files
+*.tfvars
+*.tfvars.json
+
+# Lock files
+terraform.lock.hcl
+
+# Optional: IDE and OS-specific files
+# For example, VSCode settings
+.vscode/
