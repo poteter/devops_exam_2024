@@ -1,5 +1,5 @@
 variable "bedrock_region" {
-  default     = "us-east-1"
+  default = "us-east-1"
 }
 
 variable "image_bucket_name" {
@@ -7,11 +7,11 @@ variable "image_bucket_name" {
 }
 
 variable "model_id" {
-  default     = "amazon.titan-image-generator-v1"
+  default = "amazon.titan-image-generator-v1"
 }
 
 variable "bucket_path" {
-  default     = "2/generated_images"
+  default = "2/generated_images"
 }
 
 variable "region" {
