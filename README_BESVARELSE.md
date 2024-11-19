@@ -5,19 +5,23 @@
 ___
 - A
      
-            http endpoint: https://vun0w4syh5.execute-api.eu-west-1.amazonaws.com/Prod/hello/
+        #### http url for gateway        
+
+        http endpoint: https://vun0w4syh5.execute-api.eu-west-1.amazonaws.com/Prod/hello/
         
-            it expects a request body of type:
+        it expects a request body of type:
             
-             {
-                "body": "messege"
-            }
+        {
+            "body": "messege"
+        }
 - B
     
-       https://github.com/poteter/devops_exam_2024/actions/runs/11837824347
+        #### workflow
+
+        https://github.com/poteter/devops_exam_2024/actions/runs/11837824347
 
 ### oppgave 2
-
+___
 - A
 
         #### http url for sqs queue
@@ -28,9 +32,11 @@ ___
 - B
         
         #### workflow for push to main
-        https://github.com/poteter/devops_exam_2024/actions/runs/11892270567
 
+        https://github.com/poteter/devops_exam_2024/actions/runs/11892270567
+        
         #### workflow for push to develop
+        
         https://github.com/poteter/devops_exam_2024/actions/runs/11892446129
 ___
 
@@ -38,17 +44,17 @@ ___
 
 - A
 
-    #### docker image
-    primussy/devops243b:main
-        
-    #### sqs url
-    https://sqs.eu-west-1.amazonaws.com/244530008913/candidate_2_bedrock_sqs_queue
-        
-    #### begrunnelse for tag strategi
-    Jeg valgte å tagge en image tre ganger for å gjøre det lettere å identifisere hvilken branch og commit en image kommer fra.
+        #### docker image
+        primussy/devops243b:main
+            
+        #### sqs url
+        https://sqs.eu-west-1.amazonaws.com/244530008913/candidate_2_bedrock_sqs_queue
+            
+        #### begrunnelse for tag strategi
+        Jeg valgte å tagge en image tre ganger for å gjøre det lettere å identifisere hvilken branch og commit en image kommer fra.
     
     
-### oppgave 4
+### oppgave 5
 
 
 
