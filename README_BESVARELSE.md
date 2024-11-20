@@ -57,5 +57,42 @@ ___
 ### oppgave 5
 ___
 
+ - 1
+    
+    Det tar lenger tid å utvikle en microservice enn en serverless.  En microservice krever at utvikler konfigruerer alt av OS, stack og nettverking som en service trenger.
+For hver service så må en utvikler holde styr på alt av teknologier som en service er avhengig av.  De må passe på at de teknologiene de bruker fremdeles er støttet, og er 
+kompatibelt med de andre teknologiene de vil bruke.
+    
+    Serverless krever mindre utvikling av en utvikler siden det ikke er nødvendig å konfigruere OS, Stack eller nettverking mellom funksjoner.  Dette tillater en utvikler å raskt 
+sette opp funksjoner siden alt av konfigruering er håndtert av CSPen.  Serverless funksjoner er også betraktelig mindre enn mikrotjenester siden en serverless funksjon hovedsakelig bare består 
+av koden som skal kjøre, hvor mikrotjenester i tillegg inneholder all infrastrukturen tjenesten trenger.
+
+    Forskjellene på størrelse påvirker også hvor raskt en deployment kan være, hvor en utvikler bare trenger å deploye en funksjons kode og ikke hele mikrotjenesten med all dens kode og infrastruktur.
+En funksjon vil bare bli opprettet og tilført rettigheter hvor en mikrotjeneste må som oftest bygge og installere infrastruktur og stack før koden kan kompileres, bygees til et image og deployes til 
+f.eks kubernetes.
+    
+    Mikrotjenester krever egenkonfigruert automatisering for å skalere og distribuere. Serverless funksjoner får infrastruktur automatisert fra CSPen som tar seg av skalering og distribusjon gjennom 
+tjenester som terraform. 
+
+ - 2
+
+    Siden levetiden til an FaaS funksjon er kortvarig er det vanskelig å samle inn kontinuelig metrikk.  I en mikrotjeneste vil man kunne sample inn kontinuelig metrikk enklere siden det er lang 
+levetid, og siden mikrotjenester tillater høy frihet av konfigurasjon kan man installere veldig spesialiserte metrikker i hver tjeneste.
+    
+    I et mikrotjeneste-system kan alle logger aggregeres i en database for så å bli presentert på en uniform oversiktlig måte.  Man kan implementere sentralisert logging som ELK-stacken 
+som lar deg samle inn logger skrevet til stdout i en elastic database.  Siden en tjeneste er langtlevende så er loggingen til tjenesten lang og detaljert og inneholder bare loggene fra 
+den ene instansen av den tjenesten.  I en funksjon derimot er levealderen ephemeral siden en funksjon er bygd kun når en funksjon blir kalt, og er destruert rett etter at den er ferdig kjørt.
+Dette gjør at logger etter en funksjon vil inneholde veldig korte logger med forkjellige instans-navn som gjør det vanskelig å kartlegge nøyaktig når og hvordan et problem oppsto. 
+
+ - 3
+ 
+    Fordelaktige aspekter ved serverless arkitektur er at du betaler kun for når en funksjon kjører, og skalering er håndtert av CSPen slik at kun resurser som kreves er aktivert.  I mikrotjenester 
+må man derimot selv håndtere skalering av resurser, og man betaler kontinuelig siden en resurs vil kjøre konstant.  Manuel konfigruering av skalering tillater derimot for høy konfigruerbarhet 
+og gjør det mulig for en utvikler å bestemme hvordan en resurs skal skalere.  Dette utsetter derimot en bedrift for potensielle farer som feilkonfigruering av skalering som kan føre til at det 
+blir skalert høyere enn nødvendig, som fører til høyere ugifter.  Feilkonfigruering av skalering kan også føre til for lav skalering som kan føre til lavere responstid på en tjeneste. 
+
+ - 4
+ 
+    
 
 
