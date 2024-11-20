@@ -93,6 +93,15 @@ blir skalert høyere enn nødvendig, som fører til høyere ugifter.  Feilkonfig
 
  - 4
  
+    I mikrotjenester har utvikleren fullt eierskap av skalering og infrastruktur som nettverking, servere og sikkerhet.  I serverless derimot så er skalering, sikkerhet og annen infrastruktur 
+håndtert av CSPen.  Dette gjør at utviklerne kan fokusere på utvikling av funksjonene framfor systemet funksjonen skal være del av.  I mikrotjenester så er ytelse i fullt eierskap av utviklerteamet. 
+Det er helt opp til teamets evner til å designe og implementere et system optimalisert for ytelse.  Det er derimot mye lavere eierskap av ytelse hos serverless hvor nettverking, server konfigruering 
+og skalering er håndtert av CSPen.  
     
-
-
+    Det er også høyt eierskap hos mikrotjenesteprosjekter siden det er utviklerteamet som står for server-konfigruering og opprettholding av maskinvare.  Hos serverless prosjekter er derimot eierskapet av 
+en tjenestes pålitelighet når det kommer til oppetid av nettverk og servere i CSPens hender iden de besitter maskinvaren og serverene som tjenestene skal kjøre på.  
+    
+    For et mikrotjenesteprosjekt er det hos utvikleren eierskapet for kostnadene ligger, siden det er de som står for konfigruering av servere og effektivisering av kode.  Utviklerteamet kan også 
+kontrollere de løpene utgiftene ved å optimalisere de tjenestene som skal kjøre kontinuelig.  I et serverless prosjekt er eierskapet delt.  Når det kommer til kostnadene assosiert ved skalering er 
+all kontroll over hvor effektivt det skalleres hos CSPen, og det er derfor i utviklerteamets beste interesse å utvikle funksjoner med minimal kjøretid.  Det er veldig viktig for begge arkitekturene 
+å implementere pålitelig og effektiv kostnadsovervåkning for å forhindre at en resurs bruker unødvendig mye tid på en opperasjon.
